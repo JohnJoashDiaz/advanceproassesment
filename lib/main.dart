@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:advanceproassesment/home.dart';
 import 'package:advanceproassesment/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -97,6 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             loadingstatus = false;
           });
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => UserDetails(
+                      username: username
+                      )))
+              .then((value) => setState(() {
+          }));
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

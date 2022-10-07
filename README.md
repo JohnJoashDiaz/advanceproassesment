@@ -1,5 +1,5 @@
 # advanceproassesment
-Test Credentials = Username : John Doe
+Test Credentials = Username : John Doe,
 Password : 123
 ## Web Screens 
 ![login](https://github.com/JohnJoashDiaz/advanceproassesment/blob/master/Screens/Screenshot_1665124475.png)

@@ -96,11 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             loadingstatus = false;
           });
-          Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => UserDetails(username: username)))
-              .then((value) => setState(() {}));
+          Navigator.pushAndRemoveUntil<void>(
+            context,
+            MaterialPageRoute<void>(builder: (BuildContext context) =>  UserDetails(username: username)),
+            ModalRoute.withName('/'),
+          );
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -333,7 +333,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               gotoRegister();
                             },
-                            child: Text("Register Now"),
+                            child: Text("Register Now",style: TextStyle(color:Colors.white),),
                           ),
                         ),
                       ],
@@ -518,7 +518,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onPressed: () {
                                     gotoRegister();
                                   },
-                                  child: Text("Register Now"),
+                                  child: Text("Register Now", style: TextStyle(color: Colors.white),),
                                 ),
                               ),
                             ],

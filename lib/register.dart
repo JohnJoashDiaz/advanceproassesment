@@ -292,7 +292,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                             onPressed: () {
                               gobacktoLogin();
                             },
-                            child: Text("Go Back"),
+                            child: Text("Go Back",style: TextStyle(color:Colors.white),),
                           ),
                         ),
                       ],
@@ -487,11 +487,11 @@ class _RegisterScreen extends State<RegisterScreen> {
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.teal,
                                       shape: StadiumBorder(),
-                                      onSurface: Colors.indigo),
+                                      ),
                                   onPressed: () {
                                     gobacktoLogin();
                                   },
-                                  child: Text("Go Back"),
+                                  child: Text("Go Back", style: TextStyle(color: Colors.white)),
                                 ),
                               ),
                             ],

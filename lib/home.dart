@@ -21,13 +21,11 @@ class _UserDetails extends State<UserDetails> {
 
 
   signout() async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MyApp(
-            )))
-        .then((value) => setState(() {
-    }));
+    Navigator.pushAndRemoveUntil<void>(
+      context,
+      MaterialPageRoute<void>(builder: (BuildContext context) =>  MyHomePage()),
+      ModalRoute.withName('/'),
+    );
   }
 
   @override

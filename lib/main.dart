@@ -99,13 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
             loadingstatus = false;
           });
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => UserDetails(
-                      username: username
-                      )))
-              .then((value) => setState(() {
-          }));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => UserDetails(username: username)))
+              .then((value) => setState(() {}));
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -164,7 +161,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(body: LoginScreen(context)),
+      child: Scaffold(body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 960) {
+            return webview(context);
+          }
+          return LoginScreen(context);
+        },
+      )),
     );
   }
 
@@ -202,22 +206,21 @@ class _MyHomePageState extends State<MyHomePage> {
                               style: GoogleFonts.openSans(fontSize: 15)),
                         ),
                         TextFormField(
-                          controller: usernametextcontroller,
-                          keyboardType: TextInputType.name,
-                          textCapitalization: TextCapitalization.words,
-                          decoration: const InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 3, color: Colors.blueGrey)),
-                            labelText: 'Enter your Username here',
-                            prefixIcon: Icon(Icons.person_outline_rounded),
-                          ),
+                            controller: usernametextcontroller,
+                            keyboardType: TextInputType.name,
+                            textCapitalization: TextCapitalization.words,
+                            decoration: const InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 3, color: Colors.blueGrey)),
+                              labelText: 'Enter your Username here',
+                              prefixIcon: Icon(Icons.person_outline_rounded),
+                            ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please Enter your Username';
                               }
-                            }
-                        ),
+                            }),
                         SizedBox(height: 5),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -289,15 +292,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                               onPressed: !loadingstatus
                                   ? () async {
-                                if (_formKey.currentState!.validate()) {
-                                  login();
-                                  FocusManager.instance.primaryFocus
-                                      ?.unfocus();
-                                  if (loadingstatus == false)
-                                    return setState(
-                                            () => loadingstatus = true);
-                                }
-                              }
+                                      if (_formKey.currentState!.validate()) {
+                                        login();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                        if (loadingstatus == false)
+                                          return setState(
+                                              () => loadingstatus = true);
+                                      }
+                                    }
                                   : null),
                         ),
                         Divider(
@@ -332,6 +335,164 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget webview(BuildContext context) {
+    return Scaffold(
+      body: Container(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.all(Radius.circular(40.0))),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                          controller: usernametextcontroller,
+                          keyboardType: TextInputType.name,
+                          textCapitalization: TextCapitalization.words,
+                          decoration: const InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 3, color: Colors.blueGrey)),
+                            labelText: 'Enter your Username here',
+                            prefixIcon: Icon(Icons.person_outline_rounded),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter your Username';
+                            }
+                          }),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                          controller: passwordtextcontroller,
+                          decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 3, color: Colors.blueGrey)),
+                              labelText: 'Enter your Password here',
+                              prefixIcon: Icon(Icons.lock_outline_rounded),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                },
+                                child: Icon(
+                                  _showPassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                              )),
+                          obscureText: !_showPassword,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Password';
+                            }
+                          }),
+                    ),
+                    SizedBox(height: 15),
+                    SizedBox(
+                      width: 300,
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: OutlinedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.teal,
+                              shape: StadiumBorder(),
+                              onSurface: Colors.indigo),
+                          child: loadingstatus
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                            color: Colors.white)),
+                                    SizedBox(width: 24),
+                                    Text("Logging in..",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600))
+                                  ],
+                                )
+                              : const Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              print("Validate Test");
+                              login();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    SizedBox(
+                      width: 5,
+                      height: 5,
+                      child: Divider(
+                        thickness: 1,
+                        indent: 20,
+                        endIndent: 20,
+                        color: Colors.deepPurple,
+                        height: 15,
+                      ),
+                    ),
+                    Text("Don't Have an Account?"),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: OutlinedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.teal,
+                              shape: StadiumBorder(),
+                              onSurface: Colors.indigo),
+                          onPressed: () {
+                            print("test");
+                            gotoRegister();
+                          },
+                          child: Text("Register Now"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }

@@ -41,22 +41,19 @@ class _UserDetails extends State<UserDetails> {
         backgroundColor: Colors.transparent,
         body: Align(
           alignment: Alignment.center,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40))),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Text("Logged in User is " + widget.username),
-                        Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: [
+
+                      Text("Logged in User is " + widget.username),
+                      SizedBox(
+                        width: 120,
+                        child: Container(
                           width: double.infinity,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: OutlinedButton(
@@ -67,12 +64,12 @@ class _UserDetails extends State<UserDetails> {
                             onPressed: () {
                               signout();
                             },
-                            child: Text("Go Back"),
+                            child: Text("Go Back", style: TextStyle(color: Colors.white),),
                           ),
                         ),
+                      ),
 
-                      ],
-                    ),
+                    ],
                   ),
                 ),
               ),

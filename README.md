@@ -2,7 +2,7 @@
 Test Credentials = Username : John Doe,
 Password : 123
 ## Web Screens 
-![login](https://github.com/JohnJoashDiaz/advanceproassesment/blob/master/Screens/Screenshot_1665124475.png)
+![login](https://github.com/JohnJoashDiaz/advanceproassesment/blob/master/Screens/web%201.JPG)
 ![Register](https://github.com/JohnJoashDiaz/advanceproassesment/blob/master/Screens/web%202.JPG)
 ![Logged_In](https://github.com/JohnJoashDiaz/advanceproassesment/blob/master/Screens/web%203.JPG)
 ## Mobile App Screens

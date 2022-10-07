@@ -202,9 +202,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                   borderSide: BorderSide(
                                       width: 3, color: Colors.blueGrey)),
                               labelText: 'Enter your First Name ',
-                              prefixIcon: Icon(Icons.lock_outline_rounded),
                             ),
-                            obscureText: !_showPassword,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your first name';
@@ -218,9 +216,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                   borderSide: BorderSide(
                                       width: 3, color: Colors.blueGrey)),
                               labelText: 'Enter your Last Name ',
-                              prefixIcon: Icon(Icons.lock_outline_rounded),
                             ),
-                            obscureText: !_showPassword,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your last name';
@@ -400,9 +396,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                         borderSide: BorderSide(
                                             width: 3, color: Colors.blueGrey)),
                                     labelText: 'Enter your First Name ',
-                                    prefixIcon: Icon(Icons.lock_outline_rounded),
                                   ),
-                                  obscureText: !_showPassword,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your first name';
@@ -416,9 +410,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                         borderSide: BorderSide(
                                             width: 3, color: Colors.blueGrey)),
                                     labelText: 'Enter your Last Name ',
-                                    prefixIcon: Icon(Icons.lock_outline_rounded),
                                   ),
-                                  obscureText: !_showPassword,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your last name';
@@ -487,7 +479,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.teal,
                                       shape: StadiumBorder(),
-                                      ),
+                                      onSurface: Colors.indigo),
                                   onPressed: () {
                                     gobacktoLogin();
                                   },

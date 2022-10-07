@@ -33,8 +33,8 @@ class _UserDetails extends State<UserDetails> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: NetworkImage(
-                'https://img.freepik.com/free-vector/food-icons-fast-food-drinks-rolls-flat-style_1284-44066.jpg?w=2000'),
+            image: AssetImage(
+                'assets/food-icons-fast-food-drinks-rolls-flat-style_1284-44066.jpg'),
             fit: BoxFit.cover),
       ),
       child: Scaffold(
